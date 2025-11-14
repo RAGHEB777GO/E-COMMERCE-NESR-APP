@@ -9,12 +9,11 @@ export class Category {
   @Prop({ required: true, unique: true })
   name: string;
 
- 
-  @Prop({ type: [{ type: Types.ObjectId, ref: Brand.name }] })
-  brands: Types.ObjectId[];
-
   @Prop()
-  image: string;
+  image?: string;
+
+  @Prop({ type: [{ type: Types.ObjectId, ref: Brand.name }], default: [] })
+  brands: Types.ObjectId[];
 
   @Prop({ default: true })
   isActive: boolean;

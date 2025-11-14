@@ -13,11 +13,21 @@ export class ProductService {
   }
 
   async findAll(): Promise<Product[]> {
-    return this.productModel.find({}).populate('brand').populate('category').exec();
+    return this.productModel
+      .find({})
+      .populate('brand')
+      .populate('category')
+      .populate('cartItems') 
+      .exec();
   }
 
   async findOne(id: string): Promise<Product> {
-    const product = await this.productModel.findById(id).populate('brand').populate('category').exec();
+    const product = await this.productModel
+      .findById(id)
+      .populate('brand')
+      .populate('category')
+      .populate('cartItems') 
+      .exec();
     if (!product) throw new NotFoundException('Product not found');
     return product;
   }
